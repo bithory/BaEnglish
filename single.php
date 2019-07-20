@@ -3,22 +3,6 @@
 
 include_once './wp-content/themes/ba/controller/renderClass.php';
 
-/**
- * @param $menuName
- * @param $classes      = string with all classes which shoul be included
- */
-//function renderMenu(){
-//
-//
-//
-//	if(is_array($primaryNav)){
-//
-//		foreach($primaryNav as $item){
-//
-//			echo '<li class="nav-item active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a></li>';
-//		}
-//	}
-//}
 
 function getSiteImage(){
 
@@ -119,15 +103,30 @@ $renderer = new RenderClass();
 	$(document).ready(function(){
 
 		initAccordion();
+
+		//to toggle the accordion angles
+		$('.acc-btn').click(function (){
+
+			$('.fa-angle-down').removeClass('fa-angle-down').addClass('fa-angle-right');
+
+			let expand = $(this).attr('aria-expanded');
+
+			if(expand == 'false')
+				$(this).children().removeClass('fa-angle-right').addClass('fa-angle-down');
+		});
 	});
 
 	function initAccordion(){
+
+		let count = 0;
 
 		$('.collapse').collapse(function(){
 
 			$('.first-collapse').click();
 		});
 	}
+
+
 </script>
 
 <?php get_footer(); ?>

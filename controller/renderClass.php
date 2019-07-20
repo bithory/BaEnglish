@@ -94,12 +94,12 @@ class RenderClass
 
 		$toggleFrameSt  =
 			'<div id="accordion">'.
-			'<div class="card">';
+				'<div class="card">';
 
 
 
 		$toggleFrameEn  =
-			'</div>'.
+				'</div>'.
 			'</div>';
 
 		while(strpos($paramStr, $itemTitleSt) || strpos($paramStr, $itemSt)){
@@ -107,20 +107,20 @@ class RenderClass
 
 			$toggleTitleSt     =
 				'<div class="card-header" id="heading-' . $this->headingNo . '">'.
-				'<h5 class="mb-0">'.
-				'<button class="btn btn-link ' . ($this->headingNo == 0? 'first-collapse' : '') . '" data-toggle="collapse" data-target="#collapse-' . $this->headingNo . '" aria-expanded="false" aria-controls="collapse-' . $this->headingNo . '">';
+					'<h5 class="mb-0">'.
+						'<button class="btn btn-link acc-btn" data-toggle="collapse" data-target="#collapse-' . $this->headingNo . '" aria-expanded="false" aria-controls="collapse-' . $this->headingNo . '"><i class="fas fa-angle-right"></i> ';
 
 			$toggleTitleEn =
-				'</button>'.
-				'</h5>'.
+						'</button>'.
+					'</h5>'.
 				'</div>';
 
 			$toggleContentSt =
 				'<div id="collapse-' . $this->headingNo . '" class="collapse show" aria-labelledby="heading-' . $this->headingNo . '" data-parent="#accordion">'.
-				'<div class="card-body">';
+					'<div class="card-body">';
 
 			$toggleContentEn =
-				'</div>'.
+					'</div>'.
 				'</div>';
 
 
