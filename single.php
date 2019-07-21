@@ -22,7 +22,7 @@ $renderer = new RenderClass();
 ?>
 
 <!-- PC - NAV  -->
-<nav class="navbar navbar-expand-lg main-pc-nav navbar-dark fixed-top d-none d-lg-flex">
+<nav class="navbar navbar-expand-lg main-pc-nav navbar-dark fixed-top d-none d-lg-flex cd-blue">
 
 	<div class="d-lg-block col-sm-2">
 		<div class="bg-logo">
@@ -43,7 +43,7 @@ $renderer = new RenderClass();
 	</div>
 </nav>
 <!-- MOBILE NAV -->
-<nav class="navbar navbar-expand-lg main-mobile-nav navbar-dark fixed-top d-md-block d-lg-none">
+<nav class="navbar navbar-expand-lg main-mobile-nav navbar-dark fixed-top d-md-block d-lg-none cd-blue">
 
 	<!-- Mobile - Version -->
 	<button class="navbar-toggler collapsed d-lg-none nav-element" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
@@ -67,7 +67,7 @@ $renderer = new RenderClass();
 			<div id="nav-content-divider" class=""></div>
 			<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
 			<article class="mr-5 mt-5">
-				<?php $renderer->rederContent(); ?>
+				<?php $renderer->renderContent(); ?>
 			</article>
 		</div>
 		<div class="col-lg-3">

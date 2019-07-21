@@ -58,7 +58,7 @@ class RenderClass
 		return $this->footerMenu;
 	}
 
-	public function rederContent(){
+	public function renderContent(){
 
 		if(have_posts()){
 
@@ -69,11 +69,101 @@ class RenderClass
 
 				$str = get_the_content();
 
-				if(strpos($str,'{toggle-elements}') !== false)
+				if(strpos($str,'{accordion-elements}') !== false)
 					$this->renderTogglebars($str);
+
+				if(strpos($str,'{card-elements}') !== false)
+					$this->renderCards($str);
 
 				echo $str;
 			}
+		}
+	}
+
+	private function renderCards(&$paramStr){
+
+		$initSt         = '{card-elements}';
+		$initEn         = '{/card-elements}';
+		$itemSt         = '{card-item}';
+		$itemEn         = '{/card-item}';
+		$itemTitleSt    = '{card-title}';
+		$itemTitleEn    = '{/card-title}';
+
+
+		$initPatternSt =
+			'<div class="container">'.
+			'<div class="row">';
+
+		$itemPatternTitleEn =
+						'</h5>';
+
+		$itemPatternSt =
+						'<p class="card-text">';
+
+		$itemPatternEn =
+						'</p>'.
+					'</div>'.
+				'</div>'.
+				'</div>';
+
+		$initPatternEn =
+			'</div>'.
+			'</div>';
+
+//		echo htmlspecialchars($paramStr);
+
+		while(strpos($paramStr, $initSt) !== false){
+
+
+			//maximum of one card column are 3 cards
+			//to check for the bootstrap col-<value>
+			$start  = strpos($paramStr, $initSt);
+			$end    = strpos($paramStr, $initEn) - $start + strlen($initEn);
+			$substr = substr($paramStr, $start, $end);
+
+			$count  = substr_count($substr, $itemSt);
+
+
+			$rep    = '<br>';
+			$leng   = strlen($rep);
+			$pos    = $start + strlen($initSt);
+
+			if($pos !== false)
+				$paramStr   = substr_replace($paramStr, '', $pos, $leng);
+
+			//3 as maximum of cards as columns
+			for($i = 0; $i < $count && $i < 2; $i++){
+
+
+
+				$pos        = strpos($paramStr, $itemEn) + strlen($itemEn);
+
+				if($pos !== false)
+					$paramStr   = substr_replace($paramStr, '', $pos, $leng);
+
+
+				$colClasses = 'col-md-12';
+
+				if($count == 2)
+					$colClasses = 'col-xs-12 col-md-6';
+//				elseif($count == 3)
+//					$colClasses = 'col-xs-12 col-sm-6 col-md-4';
+
+				$itemPatternTitleSt =
+					'<div class="' . $colClasses . ' pl-3 pr-3">'.
+					'<div class="card cd-blue">'.
+					'<div class="card-body">'.
+					'<h5 class="card-title">';
+
+				//can be optimated: strlengths could be calculated on time globaly and replace it in the functions
+				$paramStr = substr_replace($paramStr, $itemPatternTitleSt, strpos($paramStr, $itemTitleSt), strlen($itemTitleSt));
+				$paramStr = substr_replace($paramStr, $itemPatternSt, strpos($paramStr, $itemSt), strlen($itemSt));
+				$paramStr = substr_replace($paramStr, $itemPatternEn, strpos($paramStr, $itemEn), strlen($itemEn));
+				$paramStr = substr_replace($paramStr, $itemPatternTitleEn, strpos($paramStr, $itemTitleEn), strlen($itemTitleEn));
+			}
+
+			$paramStr = substr_replace($paramStr, $initPatternSt, $start, strlen($initSt));
+			$paramStr = substr_replace($paramStr, $initPatternEn , strpos($paramStr, $initEn), strlen($initEn));
 		}
 	}
 
@@ -85,12 +175,12 @@ class RenderClass
 	 */
 	private function renderTogglebars(&$paramStr){
 
-		$initSt         = '{toggle-elements}';
-		$initEn         = '{/toggle-elements}';
-		$itemTitleSt    = '{item-title}';
-		$itemTitleEn    = '{/item-title}';
-		$itemSt         = '{item}';
-		$itemEn         = '{/item}';
+		$initSt         = '{accordion-elements}';
+		$initEn         = '{/accordion-elements}';
+		$itemTitleSt    = '{acc-item-title}';
+		$itemTitleEn    = '{/acc-item-title}';
+		$itemSt         = '{acc-item}';
+		$itemEn         = '{/acc-item}';
 
 		$toggleFrameSt  =
 			'<div id="accordion">'.
@@ -155,7 +245,7 @@ class RenderClass
 			$rep    = '<br>';
 			$leng   = strlen($rep);
 
-			$pos        = strpos($paramStr, $initSt) + strlen($initSt);
+			$pos    = strpos($paramStr, $initSt) + strlen($initSt);
 
 			if($pos != false)
 				$paramStr   = substr_replace($paramStr, '', $pos, $leng);
