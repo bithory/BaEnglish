@@ -10,6 +10,8 @@ class RenderClass
 
 	private $headingNo;
 
+	private $imageDir;
+
 	public function __construct()
 	{
 
@@ -17,8 +19,34 @@ class RenderClass
 
 		$this->loadNav('top-menu');
 		$this->loadNav('footer-menu');
+
+		$this->imageDir = './wp-content/themes/ba/assets/images/';
+
+		$this->correctImageDir();
 	}
 
+	/**
+	 * correct the $this->imageDir link in relation to the actual url
+	 * filters folder before the links
+	 */
+	private function correctImageDir(){
+
+		$basic  = 'wordpress/';
+		$url    = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+		$dir    = $this->imageDir;
+
+		$substr = substr($url, strpos($url, $basic) + strlen($basic));
+
+		if(strlen($substr) > 0)
+			$dir = '.' . $dir;
+
+		$this->imageDir = $dir;
+	}
+
+	public function renderImageDir(){
+
+		echo $this->imageDir;
+	}
 
 	private function loadNav($menuName, $classes = ''){
 
@@ -253,5 +281,21 @@ class RenderClass
 			$paramStr = substr_replace($paramStr, $toggleFrameSt, strpos($paramStr, $initSt), strlen($initSt));
 			$paramStr = substr_replace($paramStr, $toggleFrameEn, strpos($paramStr, $initEn), strlen($initEn));
 		}
+	}
+
+
+	public function getSiteImage(){
+
+//		$url        = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
+//		$BASEURL    = 'http://localhost/wordpress/';
+//
+//		$actPage    = substr($url, strlen($BASEURL));
+
+//		if(strlen($actPage) < 1)
+//			echo $this->imageDir . 'juan-ramos-97385-unsplash.png';
+//		else
+//			echo $actPage;
+
+		echo $this->imageDir . 'juan-ramos-97385-unsplash.png';
 	}
 }
