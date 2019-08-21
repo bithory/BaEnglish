@@ -3,6 +3,9 @@ $(document).ready(function(){
 
 	initAccordion();
 
+	$('#hamburger').click();
+	console.log('hello');
+
 	//to toggle the accordion angles
 	$('.acc-btn').click(function (){
 
@@ -19,8 +22,8 @@ function initAccordion(){
 
 	let count = 0;
 
-	$('.collapse').collapse(function(){
-
-		$('.first-collapse').click();
-	});
+	// $('.collapse').collapse(function(){
+	//
+	// 	$('.first-collapse').click();
+	// });
 }

@@ -49,7 +49,8 @@ body, div, p, a{
 
 .nav-link{
     color : #FFFFFF;
-    font-size: 1.6rem;
+    /*font-size: 1.6rem;*/
+    font-size: 1.5vw;
     /*font-size: 12 pt;*/
     margin-right: 1rem;
     margin-left: 1rem;
@@ -71,7 +72,7 @@ body, div, p, a{
 }
 
 #nav-content-divider{
-    margin-top : 7.4rem;
+    margin-top : 9.3rem;
 }
 
 #nav-img-divider{
@@ -139,7 +140,9 @@ h1, h2, h3, h4{
 }
 
 p{
-    font-size : 17pt;
+    /*font-size : 17pt;*/
+    font-size : 14pt;
+    /*font-size : 1.5vw;*/
     /*font-size : 50pt;*/
     color : #00206A;
 }
@@ -159,7 +162,7 @@ p{
     /*height : 100%;*/
     height: 4rem;
     opacity : 0.89;
-    font-size: 20pt;
+    font-size: 1.5vw;
 }
 
 .footer-line span{
@@ -171,7 +174,7 @@ p{
 }
 
 .corp-name{
-    font-size: 14pt;
+    font-size: 0.9vw;
     color: #575454 !important;
 }
 
@@ -186,20 +189,8 @@ p{
 
 .card-text{
     color : #FFFFFF;
-    font-size : 15pt;
+    font-size : 14pt;
 }
-
-/*.card-wrapper{*/
-/*    display: table;*/
-/*}*/
-
-/*.card-item{*/
-/*    display: table-cell;*/
-/*}*/
-
-/*#nav-list{*/
-/*    height: 5rem;*/
-/*}*/
 
 #nav-list li {
     padding-top: 0.8rem;
@@ -226,5 +217,12 @@ p{
         /*height: 14vw;*/
         top: 0.7vw;
         left : 1.5rem;
+    }
+}
+
+@media only screen and (max-width: 992px) {
+
+    .footer-line{
+        display: none;
     }
 }

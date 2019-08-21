@@ -64,10 +64,10 @@ $renderer = new RenderClass();
 	<div class="pt-5 mt-5"></div>
 	<footer class="fixed-bottom">
 
-		<nav class="navbar navbar-expand-lg footer-line fixed-bottom corp-name">
+		<nav class="navbar footer-line fixed-bottom">
 
 
-			<div class="navbar-brand navbar-expand col-sm-6">
+			<div class="navbar-brand navbar-expand col-sm-6 corp-name">
 				Deutsch & Englischkurs von BA-English Communication Training GmbH
 			</div>
 
