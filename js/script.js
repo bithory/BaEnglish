@@ -3,8 +3,8 @@ $(document).ready(function(){
 
 	initAccordion();
 
-	$('#hamburger').click();
-	console.log('hello');
+	// $('#hamburger').click();
+	// console.log('hello');
 
 	//to toggle the accordion angles
 	$('.acc-btn').click(function (){

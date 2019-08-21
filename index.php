@@ -56,23 +56,24 @@ $renderer = new RenderClass();
 		</div>
 	</div>
 	<!-- pc -->
-	<div class="d-none d-xl-block">
+	<div class="d-none d-xl-block container-fluid">
 		<div class="row">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-7 middle-l-p">
+			<div class="col-lg-2 col-xl-2"></div>
+			<div class="col-lg-7 col-xl-7 middle-l-p">
 				<div id="nav-content-divider" class=""></div>
-				<h1 class="mr-5 mb-2">INDEX: <?php the_title(); ?></h1>
+				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
 				</article>
 			</div>
-			<div class="col-lg-3">
+			<div class="col-lg-3 col-xl-3">
 
 				<div id="nav-img-divider" class=""></div>
 				<div class="position-fixed">
 					<img id="aside-pic" src="<?php $renderer->getSiteImage();?>">
 				</div>
 			</div>
+			<div class="col-sm-2"></div>
 		</div>
 	</div>
 	<div class="container-fluid">
