@@ -42,7 +42,19 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<div class="d-xl-none"> <!-- mobile devices -->
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-10 middle-l-p">
+				<div id="nav-content-divider" class=""></div>
+				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
+				<article class="mr-5 mt-5">
+					<?php $renderer->renderContent(); ?>
+				</article>
+			</div>
+		</div>
+	</div>
+	<div class="d-none d-xl-block"> <!-- pc -->
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-7 middle-l-p">
@@ -60,6 +72,8 @@ $renderer = new RenderClass();
 				</div>
 			</div>
 		</div>
+	</div>
+	<div class="container-fluid">
 	</div>
 	<div class="pt-5 mt-5"></div>
 	<footer class="fixed-bottom">

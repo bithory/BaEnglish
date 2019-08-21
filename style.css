@@ -153,11 +153,6 @@ p{
 }
 
 
-#aside-pic{
-    max-width : 100%;
-    min-height: 100%;
-}
-
 
 .footer-line{
     background-color: #B4B4B4;
@@ -194,13 +189,13 @@ p{
     font-size : 15pt;
 }
 
-.card-wrapper{
-    display: table;
-}
+/*.card-wrapper{*/
+/*    display: table;*/
+/*}*/
 
-.card-item{
-    display: table-cell;
-}
+/*.card-item{*/
+/*    display: table-cell;*/
+/*}*/
 
 /*#nav-list{*/
 /*    height: 5rem;*/
@@ -210,12 +205,26 @@ p{
     padding-top: 0.8rem;
 }
 
-@media only screen and (max-width: 600px) {
+/* OTHER STUFF ***********************************************************************************************/
 
+
+#aside-pic{
+    max-width : 100%;
+    min-height: 100%;
+}
+
+@media only screen and (max-width: 1300px) {
+
+    #logo{
+        top: 7.3vw;
+        left: 1.1rem;
+        max-height: 8.3rem;
+        max-width : 75%;
+    }
 
     .bg-logo{
-        max-width: 18rem;
-        height: 17vw;
-        max-height : 20rem;
+        /*height: 14vw;*/
+        top: 0.7vw;
+        left : 1.5rem;
     }
 }
