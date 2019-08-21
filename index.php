@@ -18,7 +18,7 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 
-		<div class="navbar-collapse collapse col-lg-10 short-l-p" style="">
+		<div class="navbar-collapse collapse col-lg-10 short-l-p" id="navbarsExample01" style="">
 			<ul id="nav-list" class="navbar-nav mr-auto ">
 				<?php $renderer->getTopMenu(); ?>
 			</ul>
@@ -27,22 +27,23 @@ $renderer = new RenderClass();
 		</div>
 	</nav>
 	<!-- MOBILE NAV -->
-	<nav class="navbar navbar-dark fixed-top d-md-block d-lg-none cd-blue">
+	<nav class="navbar navbar-expand-lg main-mobile-nav navbar-dark fixed-top d-md-block d-lg-none cd-blue">
 
 		<!-- Mobile - Version -->
-		<button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggleExternalContent" aria-controls="navbarToggleExternalContent" aria-expanded="false" aria-label="Toggle navigation">
+		<button class="navbar-toggler collapsed d-lg-none nav-element" type="button" data-toggle="collapse" data-target="#navbarsExample01" aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
 			<span class="navbar-toggler-icon"></span>
 		</button>
-			<div class="collapse col-lg-10 short-l-p" id="navbarToggleExternalContent" style="">
-<!--			<div class="collapse" id="navbarToggleExternalContent">-->
-				<ul id="nav-list" class="navbar-nav mr-auto ">
-					<?php $renderer->getTopMenu(); ?>
-				</ul>
-				<div class="">
-				</div>
+
+		<div class="navbar-collapse collapse col-lg-10 short-l-p" id="navbarsExample01" style="">
+			<ul id="nav-list" class="navbar-nav mr-auto ">
+				<?php $renderer->getTopMenu(); ?>
+			</ul>
+			<div class="">
 			</div>
+		</div>
 	</nav>
-	<div class="d-xl-none"> <!-- mobile devices -->
+	<!-- mobile devices -->
+	<div class="d-xl-none">
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-10 middle-l-p">
@@ -54,12 +55,13 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 	</div>
-	<div class="d-none d-xl-block"> <!-- pc -->
+	<!-- pc -->
+	<div class="d-none d-xl-block">
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-7 middle-l-p">
 				<div id="nav-content-divider" class=""></div>
-				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
+				<h1 class="mr-5 mb-2">INDEX: <?php the_title(); ?></h1>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
 				</article>

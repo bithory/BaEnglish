@@ -9,13 +9,15 @@ class RenderClass
 	private $footerMenu;
 
 	private $headingNo;
+	private $accordNo;
 
 	private $imageDir;
 
 	public function __construct()
 	{
 
-		$this->headingNo = 0;
+		$this->headingNo    = 0;
+		$this->accordNo     = 0;
 
 		$this->loadNav('top-menu');
 		$this->loadNav('footer-menu');
@@ -210,8 +212,10 @@ class RenderClass
 		$itemSt         = '{acc-item}';
 		$itemEn         = '{/acc-item}';
 
+		$i  = 0;
+
 		$toggleFrameSt  =
-			'<div id="accordion">'.
+			'<div id="accordion-' . ++$this->accordNo . '">'.
 				'<div class="card">';
 
 
@@ -234,7 +238,7 @@ class RenderClass
 				'</div>';
 
 			$toggleContentSt =
-				'<div id="collapse-' . $this->headingNo . '" class="collapse show" aria-labelledby="heading-' . $this->headingNo . '" data-parent="#accordion">'.
+				'<div id="collapse-' . $this->headingNo . '" class="collapse ' . ($i == 0? ' show ' . $i . ' ' : '') . '" aria-labelledby="heading-' . $this->headingNo . '" data-parent="#accordion-' . $this->accordNo . '">'.
 					'<div class="card-body">';
 
 			$toggleContentEn =
@@ -265,6 +269,7 @@ class RenderClass
 			$paramStr = substr_replace($paramStr, $toggleTitleEn, strpos($paramStr, $itemTitleEn), strlen($itemTitleEn));
 
 			$this->headingNo++;
+			$i++;
 		}
 
 		//delete false <br> from the frame (init elements)

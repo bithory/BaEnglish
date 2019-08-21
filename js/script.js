@@ -26,4 +26,5 @@ function initAccordion(){
 	//
 	// 	$('.first-collapse').click();
 	// });
+	$('.acc-collapse').collapse();
 }

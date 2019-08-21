@@ -47,7 +47,7 @@ $renderer = new RenderClass();
 			<div class="col-lg-2"></div>
 			<div class="col-lg-7 middle-l-p">
 				<div id="nav-content-divider" class=""></div>
-				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
+				<h1 class="mr-5 mb-2">FRONT: <?php the_title(); ?></h1>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
 				</article>
