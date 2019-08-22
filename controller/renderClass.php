@@ -90,27 +90,41 @@ class RenderClass
 
 	public function renderContent(){
 
-		if(have_posts()){
+		$paraArr = array();
 
+		if(have_posts()){
+			$i = 0;
 			while(have_posts()){
 
 				the_post();
-//				the_content();
 
 				$str = get_the_content();
 
-				if(strpos($str,'{accordion-elements}') !== false)
-					$this->renderTogglebars($str);
+				$paraArr    = explode('<!-- wp:paragraph -->', $str);
+				$str        = '';
 
-				if(strpos($str,'{card-elements}') !== false)
-					$this->renderCards($str);
+				if(is_array($paraArr)){
+
+					foreach($paraArr as $val){
+
+						$val = '<!-- wp:paragraph -->' . $val;
+
+						if(strpos($val,'{accordion-elements}') !== false)
+							$str .= $this->renderTogglebars($val);
+						else if(strpos($val,'{card-elements}') !== false)
+							$str .= $this->renderCards($val);
+						else
+							$str .= $val;
+					}
+				}
+
 
 				echo $str;
 			}
 		}
 	}
 
-	private function renderCards(&$paramStr){
+	private function renderCards($paramStr){
 
 		$initSt         = '{card-elements}';
 		$initEn         = '{/card-elements}';
@@ -140,7 +154,12 @@ class RenderClass
 			'</div>'.
 			'</div>';
 
+		$cardAmount = substr_count($paramStr, $itemSt);
+		$cardNo     = 0;
+
+//		echo $cardAmount . '<br>';
 //		echo htmlspecialchars($paramStr);
+//		echo '<hr>';
 
 		while(strpos($paramStr, $initSt) !== false){
 
@@ -180,10 +199,12 @@ class RenderClass
 //					$colClasses = 'col-xs-12 col-sm-6 col-md-4';
 
 				$itemPatternTitleSt =
-					'<div class="' . $colClasses . ' pl-3 pr-3">'.
+					'<div class="' . $colClasses . ($cardAmount == 1 ? ' pl-0 pr-0 ' : ($cardNo == 0 ? ' pl-0 pr-3 ' : ' pl-3 pr-0 ')) . '">' .
 					'<div class="card cd-blue">'.
 					'<div class="card-body">'.
 					'<h5 class="card-title">';
+
+				$cardNo++;
 
 				//can be optimated: strlengths could be calculated on time globaly and replace it in the functions
 				$paramStr = substr_replace($paramStr, $itemPatternTitleSt, strpos($paramStr, $itemTitleSt), strlen($itemTitleSt));
@@ -195,6 +216,8 @@ class RenderClass
 			$paramStr = substr_replace($paramStr, $initPatternSt, $start, strlen($initSt));
 			$paramStr = substr_replace($paramStr, $initPatternEn , strpos($paramStr, $initEn), strlen($initEn));
 		}
+
+		return $paramStr;
 	}
 
 	/**
@@ -203,7 +226,7 @@ class RenderClass
 	 *
 	 * @param string $paramStr = the html output string
 	 */
-	private function renderTogglebars(&$paramStr){
+	private function renderTogglebars($paramStr){
 
 		$initSt         = '{accordion-elements}';
 		$initEn         = '{/accordion-elements}';
@@ -286,6 +309,8 @@ class RenderClass
 			$paramStr = substr_replace($paramStr, $toggleFrameSt, strpos($paramStr, $initSt), strlen($initSt));
 			$paramStr = substr_replace($paramStr, $toggleFrameEn, strpos($paramStr, $initEn), strlen($initEn));
 		}
+
+		return $paramStr;
 	}
 
 
