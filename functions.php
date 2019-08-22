@@ -43,12 +43,18 @@ function loadFontAwesome(){
 	wp_enqueue_script('fontawesome');
 }
 
+//function asidePic(){
+//
+//}
+
 add_action('wp_enqueue_scripts', 'include_jquery');
 add_action('wp_enqueue_scripts', 'load_stylesheets');
 add_action('wp_enqueue_scripts', 'loadjs');
 add_action('wp_enqueue_scripts', 'loadFontAwesome');
+//add_action('wp_enqueue_scripts', 'asidePic');
 
 add_theme_support('menus');
+add_theme_support('post-thumbnails');
 
 register_nav_menus(array(
 	'top-menu'      => __('Top Menu', 'theme'),

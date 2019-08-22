@@ -13,8 +13,14 @@ class RenderClass
 
 	private $imageDir;
 
+	private $AsidePic;
+
 	public function __construct()
 	{
+
+		$this->AsidePic = get_the_post_thumbnail( null, 'large');
+
+//		echo $this->AsidePic;
 
 		$this->headingNo    = 0;
 		$this->accordNo     = 0;
@@ -316,16 +322,9 @@ class RenderClass
 
 	public function getSiteImage(){
 
-//		$url        = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-//		$BASEURL    = 'http://localhost/wordpress/';
-//
-//		$actPage    = substr($url, strlen($BASEURL));
+		if($this->AsidePic == '')
+			$this->AsidePic = $this->imageDir . 'juan-ramos-97385-unsplash.png';
 
-//		if(strlen($actPage) < 1)
-//			echo $this->imageDir . 'juan-ramos-97385-unsplash.png';
-//		else
-//			echo $actPage;
-
-		echo $this->imageDir . 'juan-ramos-97385-unsplash.png';
+		echo $this->AsidePic;
 	}
 }
