@@ -56,6 +56,11 @@ body, div, p, a{
     margin-left: 1rem;
 }
 
+#content-wrapper{
+
+    height : 96vh;
+}
+
 /*.navbar-toggler{*/
 /*    background-color : #FFFFFF;*/
 /*}*/
@@ -72,7 +77,11 @@ body, div, p, a{
 }
 
 #nav-content-divider{
-    margin-top : 9.3rem;
+    margin-top : 8rem;
+}
+
+#nav-content-divider-home{
+    margin-top : 6.8rem;
 }
 
 #nav-img-divider{
@@ -209,6 +218,22 @@ p{
 #aside-pic{
     max-width : auto;
     min-height: 100%;
+}
+
+.wp-block-image img{
+    margin-top: 2.4rem;
+}
+
+.home-title{
+    background-color: white;
+    padding-top : 1rem;
+    padding-bottom : 1rem;
+    margin-right : 2rem;
+    opacity : 0.85;
+}
+
+.home-title h1{
+    padding-left : 1rem;
 }
 
 @media only screen and (max-width: 1300px) {

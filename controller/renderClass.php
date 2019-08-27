@@ -124,6 +124,7 @@ class RenderClass
 					}
 				}
 
+				$str = do_shortcode($str, true);
 
 				echo $str;
 			}
@@ -319,6 +320,17 @@ class RenderClass
 		return $paramStr;
 	}
 
+	private function renderCounter(){
+
+		$itemSt     = '{count}';
+		$itemEn     = '{/count}';
+		$titleSt    = '{count-title}';
+		$titleEn    = '{count-title}';
+		$noSt       = '{count-no}';
+		$noEn       = '{/count-no}';
+
+
+	}
 
 	public function getSiteImage(){
 
@@ -326,5 +338,10 @@ class RenderClass
 			$this->AsidePic = $this->imageDir . 'juan-ramos-97385-unsplash.png';
 
 		echo $this->AsidePic;
+	}
+
+	public function getBackgroundImage(){
+
+		echo get_the_post_thumbnail( null, 'full');
 	}
 }

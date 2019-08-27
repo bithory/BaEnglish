@@ -20,11 +20,11 @@ $(document).ready(function(){
 
 function initAccordion(){
 
-	let count = 0;
-
-	// $('.collapse').collapse(function(){
-	//
-	// 	$('.first-collapse').click();
-	// });
 	$('.acc-collapse').collapse();
+}
+
+function initHomePage(){
+
+	let img = $('#hidden-background').children().attr('src');
+	$('#content-wrapper').css('background', 'url(\'' +  img + '\'');
 }

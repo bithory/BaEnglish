@@ -42,29 +42,26 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<!-- pc -->
+	<div id="content-wrapper" class="d-none d-xl-block container-fluid ">
 		<div class="row">
-			<div class="col-lg-2"></div>
-			<div class="col-lg-7 middle-l-p">
-				<div id="nav-content-divider" class=""></div>
-				<h1 class="mr-5 mb-2">FRONT: <?php the_title(); ?></h1>
+			<div class="col-lg-2 col-xl-2"></div>
+			<div class="col-lg-10 col-xl-10 middle-l-p">
+				<div id="nav-content-divider-home" class=""></div>
+				<div class=" home-title">
+					<h1 class="mr-5 mb-2 "><?php the_title(); ?></h1>
+				</div>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
 				</article>
 			</div>
-			<div class="col-lg-3">
-
-				<div id="nav-img-divider" class=""></div>
-				<div class="position-fixed">
-					<img id="aside-pic" src="<?php $renderer->getSiteImage();?>">
-				</div>
-			</div>
 		</div>
 	</div>
-	<div class="pt-5 mt-5"></div>
+	<div class="container-fluid">
+	</div>
 	<footer class="fixed-bottom">
 
-		<nav class="navbar footer-line fixed-bottom">
+		<nav class="navbar navbar-expand-lg footer-line fixed-bottom">
 
 
 			<div class="navbar-brand navbar-expand col-sm-6 corp-name">
@@ -78,5 +75,11 @@ $renderer = new RenderClass();
 			</div>
 		</nav>
 	</footer>
+	<div id="hidden-background" class="d-none">
+		<?php $renderer->getBackgroundImage();?>
+	</div>
+	<script>
+		initHomePage();
+	</script>
 
 <?php get_footer(); ?>
