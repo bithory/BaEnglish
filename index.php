@@ -64,7 +64,7 @@ $renderer = new RenderClass();
 				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
-				</article>
+				</article>ja
 			</div>
 			<div class="col-lg-3 col-xl-3">
 

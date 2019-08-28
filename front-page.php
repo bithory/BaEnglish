@@ -44,6 +44,9 @@ $renderer = new RenderClass();
 	</nav>
 	<!-- pc -->
 	<div id="content-wrapper" class="d-none d-xl-block container-fluid ">
+		<div class="d-none">
+			<?php $renderer->renderContent(); ?>
+		</div>
 		<div class="row">
 			<div class="col-lg-2 col-xl-2"></div>
 			<div class="col-lg-10 col-xl-10 middle-l-p">
@@ -51,9 +54,24 @@ $renderer = new RenderClass();
 				<div class=" home-title">
 					<h1 class="mr-5 mb-2 "><?php the_title(); ?></h1>
 				</div>
-				<article class="mr-5 mt-5">
-					<?php $renderer->renderContent(); ?>
-				</article>
+				<div class=" pt-huge">
+					<div class="mr-5">
+						<div class="row">
+							<div class="col-sm-3 pr-0">
+								<div class="col-sm-11 home-content-left">
+									<div id="left-text">
+										<?php $renderer->renderLeftPanel(); ?>
+									</div>
+								</div>
+							</div>
+							<div class="col-sm-9 home-content-right">
+								<div class="row">
+									<?php $renderer->renderRightPanel(); ?>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
 			</div>
 		</div>
 	</div>

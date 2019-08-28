@@ -81,7 +81,7 @@ body, div, p, a{
 }
 
 #nav-content-divider-home{
-    margin-top : 6.8rem;
+    margin-top : 8.8rem;
 }
 
 #nav-img-divider{
@@ -234,6 +234,45 @@ p{
 
 .home-title h1{
     padding-left : 1rem;
+}
+
+.home-content-left{
+    background-color: white;
+    padding-top : 1rem;
+    padding-bottom : 1rem;
+    opacity : 0.85;
+    padding-right : 2rem;
+}
+
+#left-text p{
+    margin-top : 0px;
+    font-size : 1.4vw;
+}
+
+.count-title{
+    color : #00206A;
+    font-size : 1.3vw;
+    text-align: center;
+}
+
+.count-no{
+    color : #00206A;
+    font-size : 2vw;
+    font-weight: bold;
+    text-align: center;
+}
+
+.home-content-right{
+    background-color: white;
+    padding-top : 1rem;
+    padding-bottom : 1rem;
+    opacity : 0.85;
+    padding-right : 2rem;
+    border-radius : 0px 0px 40px 0px;
+}
+
+.pt-huge{
+    padding-top : 53vh;
 }
 
 @media only screen and (max-width: 1300px) {

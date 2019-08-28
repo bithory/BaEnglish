@@ -15,6 +15,10 @@ class RenderClass
 
 	private $AsidePic;
 
+	//for the home site
+	private $leftPanel;
+	private $rightPanel;
+
 	public function __construct()
 	{
 
@@ -24,6 +28,9 @@ class RenderClass
 
 		$this->headingNo    = 0;
 		$this->accordNo     = 0;
+
+		$this->leftPanel    = '';
+		$this->rightPanel   = '';
 
 		$this->loadNav('top-menu');
 		$this->loadNav('footer-menu');
@@ -96,7 +103,8 @@ class RenderClass
 
 	public function renderContent(){
 
-		$paraArr = array();
+		$paraArr    = array();
+		$count      = false;
 
 		if(have_posts()){
 			$i = 0;
@@ -106,8 +114,17 @@ class RenderClass
 
 				$str = get_the_content();
 
+				if(strpos($str, '{/count}'))
+					$count = true;
+
 				$paraArr    = explode('<!-- wp:paragraph -->', $str);
 				$str        = '';
+
+				if($count){
+
+					$this->renderCounter($paraArr);
+					return;
+				}
 
 				if(is_array($paraArr)){
 
@@ -320,16 +337,58 @@ class RenderClass
 		return $paramStr;
 	}
 
-	private function renderCounter(){
+	private function renderCounter(Array &$param){
+
+		$str        = '';
+		$i          = 0;
 
 		$itemSt     = '{count}';
 		$itemEn     = '{/count}';
 		$titleSt    = '{count-title}';
-		$titleEn    = '{count-title}';
+		$titleEn    = '{/count-title}';
 		$noSt       = '{count-no}';
 		$noEn       = '{/count-no}';
 
+		$pattern    = '<div class="col-sm-4">' .
+							'<div class="col-sm-12 count-title">' .
+								$titleSt .
+							'</div>' .
+							'<div id="count-{id}" class="col-sm-12 count-no" no="' . $noSt . '">' .
+								'<span>' . $noSt . '</span>' .
+							'</div>' .
+						'</div>';
 
+		$this->leftPanel    = str_replace('<!-- /wp:paragraph -->', '', $param[1]);
+
+		unset($param[0]);
+		unset($param[1]);
+
+		if($param != null){
+
+			foreach($param as $key => $val){
+
+				$st     = strpos($val, $titleSt) + strlen($titleSt);
+				$end    = strpos($val, $titleEn) - $st;
+
+				$title  = substr($val, $st, $end);
+
+				$st     = strpos($val, $noSt) + strlen($noSt);
+				$end    = strpos($val, $noEn) - $st;
+
+				$no     = substr($val, $st, $end);
+
+				$temp   = $pattern;
+
+				$temp   = str_replace($titleSt, $title, $pattern);
+				$temp   = str_replace($noSt, $no, $temp);
+
+				$temp   = str_replace('{id}', $i++, $temp);
+
+				$str    .= $temp;
+			}
+		}
+
+		$this->rightPanel = $str;
 	}
 
 	public function getSiteImage(){
@@ -343,5 +402,13 @@ class RenderClass
 	public function getBackgroundImage(){
 
 		echo get_the_post_thumbnail( null, 'full');
+	}
+
+	public function renderLeftPanel(){
+		echo $this->leftPanel;
+	}
+
+	public function renderRightPanel(){
+		echo $this->rightPanel;
 	}
 }
