@@ -44,6 +44,7 @@ $renderer = new RenderClass();
 	</nav>
 	<!-- mobile devices -->
 	<div id="content-wrapper-mobile" class="d-xl-none">
+		<img id="content-wrapper-mobile-img" src="" style="visibility: hidden;" />
 		<div class="row">
 			<div class="col-lg-2"></div>
 			<div class="col-lg-10 middle-l-p">

@@ -27,9 +27,15 @@ function initHomePage(){
 
 	//set background image
 	let img = $('#hidden-background').children().attr('src');
-	$('#content-wrapper').css('background', 'url(\'' +  img + '\')  no-repeat center center fixed');
-	// $('#content-wrapper-mobile').css('background', 'url(\'' +  img + '\') no-repeat ');
-	$('#content-wrapper-mobile').css('background', 'url(\'' +  img + '\') no-repeat center fixed');
+	// $('#content-wrapper').css('background', 'url(\'' +  img + '\')  no-repeat center center fixed');
+
+	$('body').css('background', 'url(\'' +  img + '\')  no-repeat center center fixed');
+	$('body').css('-webkit-background-size', 'cover');
+	$('body').css('-moz-background-size', 'cover');
+	$('body').css('-o-background-size', 'cover');
+	$('body').css('background-size', 'cover');
+	$('body').css('height', '100%');
+	$('body').css('overflow', 'hidden');
 
 	//init counter
 	let nodes = $('.count-no');

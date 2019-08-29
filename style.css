@@ -304,6 +304,7 @@ p{
 
 #content-wrapper-mobile{
     height: 100vh;
+    display: inline-block;
 }
 
 .mr-5-mobile{
@@ -313,6 +314,7 @@ p{
 .right-panel-table{
     margin: 0px;
 }
+
 
 @media only screen and (max-width: 1300px) {
 
@@ -334,6 +336,10 @@ p{
 
     .footer-line{
         display: none;
+    }
+
+    .nav-link{
+        font-size: 3vw;
     }
 }
 
@@ -373,7 +379,6 @@ p{
     }
 
     .count-no{
-
         font-size: 3vw;
     }
 }
@@ -396,5 +401,9 @@ p{
 
     .pt-huge{
         padding-top : 42vh;
+    }
+
+    #content-wrapper-mobile{
+        background-size: 1400px;
     }
 }
