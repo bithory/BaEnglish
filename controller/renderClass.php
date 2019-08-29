@@ -18,6 +18,7 @@ class RenderClass
 	//for the home site
 	private $leftPanel;
 	private $rightPanel;
+	private $rightPanelMobile;
 
 	public function __construct()
 	{
@@ -340,7 +341,8 @@ class RenderClass
 	private function renderCounter(Array &$param){
 
 		$str        = '';
-		$i          = 0;
+		$th         = '';
+		$td         = '';
 
 		$itemSt     = '{count}';
 		$itemEn     = '{/count}';
@@ -358,6 +360,17 @@ class RenderClass
 							'</div>' .
 						'</div>';
 
+		$patternMobile = '<thead>' .
+							'<tr>' .
+								'{th}' .
+							'</tr>' .
+						'</thead>' .
+						'<tbody>' .
+							'<tr>' .
+								'{td}' .
+							'</tr>' .
+						'</tbody>';
+
 		$this->leftPanel    = str_replace('<!-- /wp:paragraph -->', '', $param[1]);
 
 		unset($param[0]);
@@ -367,6 +380,7 @@ class RenderClass
 
 			foreach($param as $key => $val){
 
+				//pc
 				$st     = strpos($val, $titleSt) + strlen($titleSt);
 				$end    = strpos($val, $titleEn) - $st;
 
@@ -382,13 +396,20 @@ class RenderClass
 				$temp   = str_replace($titleSt, $title, $pattern);
 				$temp   = str_replace($noSt, $no, $temp);
 
-				$temp   = str_replace('{id}', $i++, $temp);
+				$temp   = str_replace('{id}', $this->headingNo++, $temp);
 
-				$str    .= $temp;
+				$this->rightPanel .= $temp;
+
+				//mobile
+				$th .= '<th class="count-title" scope="col">' . $title . '</th>';
+				$td .= '<td class="count-no" no="' . $no . '"><span>' . $no . '</span></td>';
 			}
-		}
 
-		$this->rightPanel = $str;
+			$patternMobile = str_replace('{th}', $th, $patternMobile);
+			$patternMobile = str_replace('{td}', $td, $patternMobile);
+
+			$this->rightPanelMobile = $patternMobile;
+		}
 	}
 
 	public function getSiteImage(){
@@ -410,5 +431,9 @@ class RenderClass
 
 	public function renderRightPanel(){
 		echo $this->rightPanel;
+	}
+
+	public function renderRightPanelMobile(){
+		echo $this->rightPanelMobile;
 	}
 }

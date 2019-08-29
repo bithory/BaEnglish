@@ -25,20 +25,20 @@ function initAccordion(){
 
 function initHomePage(){
 
+	//set background image
 	let img = $('#hidden-background').children().attr('src');
-	$('#content-wrapper').css('background', 'url(\'' +  img + '\'');
+	$('#content-wrapper').css('background', 'url(\'' +  img + '\')  no-repeat center center fixed');
+	// $('#content-wrapper-mobile').css('background', 'url(\'' +  img + '\') no-repeat ');
+	$('#content-wrapper-mobile').css('background', 'url(\'' +  img + '\') no-repeat center fixed');
 
-	let node0   = $('#count-0');
-	let node1   = $('#count-1');
-	let node2   = $('#count-2');
+	//init counter
+	let nodes = $('.count-no');
 
-	let no0     = $(node0).attr('no');
-	let no1     = $(node1).attr('no');
-	let no2     = $(node2).attr('no');
+	$.each(nodes, function(val){
 
-	count(no0, node0);
-	count(no1, node1);
-	count(no2, node2);
+		let no = $(this).attr('no');
+		count(no, this);
+	});
 }
 
 function count(no, node){

@@ -42,6 +42,30 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 	</nav>
+	<!-- mobile devices -->
+	<div id="content-wrapper-mobile" class="d-xl-none">
+		<div class="row">
+			<div class="col-lg-2"></div>
+			<div class="col-lg-10 middle-l-p">
+				<div id="nav-content-divider-home-mobile" class=""></div>
+				<div class=" home-title">
+					<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
+				</div>
+<!--				<div class="mr-5 mt-5 pt-huge">-->
+				<div class="mr-5-mobile mt-5 pt-huge-mobile">
+					<?php $renderer->renderContent(); ?>
+					<div class="home-content-left">
+						<?php $renderer->renderLeftPanel(); ?>
+					</div>
+					<div class="row home-content-right mt-3">
+						<table class="table right-panel-table">
+							<?php $renderer->renderRightPanelMobile(); ?>
+						</table>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	<!-- pc -->
 	<div id="content-wrapper" class="d-none d-xl-block container-fluid ">
 		<div class="d-none">

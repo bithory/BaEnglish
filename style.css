@@ -80,8 +80,16 @@ body, div, p, a{
     margin-top : 8rem;
 }
 
+#nav-content-divider-mobile{
+    margin-top : 8rem;
+}
+
 #nav-content-divider-home{
     margin-top : 8.8rem;
+}
+
+#nav-content-divider-home-mobile{
+    margin-top : 13vh;
 }
 
 #nav-img-divider{
@@ -224,6 +232,20 @@ p{
     margin-top: 2.4rem;
 }
 
+#content-wrapper{
+    /*-webkit-background-size: cover;*/
+    /*-moz-background-size: cover;*/
+    /*-o-background-size: cover;*/
+    /*background-size: cover;*/
+}
+
+#content-wrapper-home{
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+}
+
 .home-title{
     background-color: white;
     padding-top : 1rem;
@@ -275,6 +297,23 @@ p{
     padding-top : 53vh;
 }
 
+.pt-huge-mobile{
+    /*padding-top : 60vh;*/
+    padding-top : 47vh;
+}
+
+#content-wrapper-mobile{
+    height: 100vh;
+}
+
+.mr-5-mobile{
+    margin-right : 1.9rem;
+}
+
+.right-panel-table{
+    margin: 0px;
+}
+
 @media only screen and (max-width: 1300px) {
 
     #logo{
@@ -302,5 +341,60 @@ p{
 
     #aside-pic{
         margin-top : 6.5rem;
+    }
+}
+
+/* HOME MEDIA ---------------------------------------------------------------------*/
+
+@media only screen and (max-width: 1024px){
+
+
+    .home-content-left{
+        padding-left : 2rem;
+        margin-left : 30vw;
+    }
+
+    .home-content-left p{
+        margin-top : 1rem;
+        font-size: 3vw;
+    }
+
+    .home-content-right{
+        padding-top : 1rem;
+        padding-bottom : 1rem;
+        /*padding-right : 2rem;*/
+        border-radius : 0px 0px 40px 0px;
+        margin-right: 0px;
+        margin-left: 0px;
+    }
+
+    .count-title{
+        font-size: 2vw;
+    }
+
+    .count-no{
+
+        font-size: 3vw;
+    }
+}
+
+@media only screen and (max-height: 900px) {
+
+    .pt-huge{
+        padding-top : 49vh;
+    }
+}
+
+@media only screen and (max-height: 840px) {
+
+    .pt-huge{
+        padding-top : 46vh;
+    }
+}
+
+@media only screen and (max-height: 780px) {
+
+    .pt-huge{
+        padding-top : 42vh;
     }
 }
