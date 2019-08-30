@@ -20,7 +20,7 @@ $renderer = new RenderClass();
 
 		<div class="navbar-collapse collapse col-lg-10 short-l-p" id="navbarsExample01" style="">
 			<ul id="nav-list" class="navbar-nav mr-auto ">
-				<?php $renderer->getTopMenu(); ?>
+<!--				--><?php $renderer->getTopMenu(); ?>
 			</ul>
 			<div class="">
 			</div>

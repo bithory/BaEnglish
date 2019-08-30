@@ -36,27 +36,9 @@ class RenderClass
 		$this->loadNav('top-menu');
 		$this->loadNav('footer-menu');
 
-		$this->imageDir = './wp-content/themes/ba/assets/images/';
+		$this->imageDir = get_template_directory_uri() . '/assets/images/';
 
-		$this->correctImageDir();
-	}
-
-	/**
-	 * correct the $this->imageDir link in relation to the actual url
-	 * filters folder before the links
-	 */
-	private function correctImageDir(){
-
-		$basic  = 'wordpress/';
-		$url    = (isset($_SERVER['HTTPS']) && $_SERVER['HTTPS'] === 'on' ? "https" : "http") . "://{$_SERVER['HTTP_HOST']}{$_SERVER['REQUEST_URI']}";
-		$dir    = $this->imageDir;
-
-		$substr = substr($url, strpos($url, $basic) + strlen($basic));
-
-		if(strlen($substr) > 0)
-			$dir = '.' . $dir;
-
-		$this->imageDir = $dir;
+//		$this->correctImageDir();
 	}
 
 	public function renderImageDir(){
@@ -77,29 +59,75 @@ class RenderClass
 
 	public function getTopMenu($classes = ''){
 
-
-		if(is_array($this->topMenu)){
-
-			foreach($this->topMenu as $item){
-
-				echo '<li class="nav-item active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a></li>';
-			}
-		}
-
-		return $this->topMenu;
+		$this->renderMenu($this->topMenu, 'down');
 	}
 
 	public function getFooterMenu($classes = ''){
 
-		if(is_array($this->footerMenu)){
+		$this->renderMenu($this->footerMenu, 'up');
+	}
 
-			foreach($this->footerMenu as $item){
+	/**
+	 * Render a Menu
+	 *
+	 * @param string $classes
+	 */
+	private function renderMenu($menu, $expDirection){
 
-				echo '<li class="nav-item active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a></li>';
+		if(is_array($menu)){
+
+			$str = '';
+			$arr = array();
+
+			$i      = 0;
+			$parEd  = false;
+
+			$tempUrl    = '';
+			$tempTitle  = '';
+
+			foreach($menu as $item){
+
+				if($item->menu_item_parent == 0){
+
+					$arr[$i]['start']   = '<li class="nav-item active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a>';
+					$arr[$i]['end']     = '</li>';
+					$arr[$i]['nested']  = null;
+
+					$tempUrl    = $item->url;
+					$tempTitle  = $item->title;
+
+					$i++;
+				}
+				else{
+					$arr[$i - 1]['nested'][] = '<a class="dropdown-item" href="' . $item->url . '">' . $item->title . '</a>';
+
+					if(!$parEd)
+						$arr[$i - 1]['start'] = '<li class="nav-item drop' . $expDirection . ' active align-content-lg-center ' . $classes . '"><a href="' . $tempUrl . '" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $tempTitle . '</a>';
+				}
+
+			}
+
+			foreach($arr as $val){
+
+				if($val['nested'] != null){
+
+					$substr = '';
+
+					foreach($val['nested'] as $val1){
+
+						$substr .= $val1;
+					}
+
+					$str .= $val['start'] . '<div class="dropdown-menu" aria-labelledby="navbarDropdown">' . $substr . '</div>' . $val['end'];
+				}
+				else{
+
+					$str .= $val['start'] . $val['end'];
+				}
 			}
 		}
 
-		return $this->footerMenu;
+		echo $str;
 	}
 
 	public function renderContent(){
@@ -418,7 +446,7 @@ class RenderClass
 
 	public function getSiteImage(){
 
-		if($this->AsidePic == '')
+		if($this->AsidePic == null)
 			$this->AsidePic = $this->imageDir . 'juan-ramos-97385-unsplash.png';
 
 		echo $this->AsidePic;
