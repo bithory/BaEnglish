@@ -151,11 +151,14 @@ class RenderClass
 
 	private function renderCards($paramStr){
 
+		$str            = '';
+
 		$initSt         = '{card-elements}';
 		$initEn         = '{/card-elements}';
 		$itemSt         = '{card-item}';
 		$itemEn         = '{/card-item}';
 		$itemTitleSt    = '{card-title}';
+		$itemTitleGraySt= '{card-title-gray}';
 		$itemTitleEn    = '{/card-title}';
 
 
@@ -164,85 +167,86 @@ class RenderClass
 			'<div class="row">';
 
 		$itemPatternTitleEn =
-						'</h5>';
+			'</h5>';
 
 		$itemPatternSt =
-						'<p class="card-text">';
+			'<p class="card-text">';
 
 		$itemPatternEn =
-						'</p>'.
-					'</div>'.
-				'</div>'.
-				'</div>';
+			'</p>'.
+			'</div>'.
+			'</div>'.
+			'</div>';
 
 		$initPatternEn =
 			'</div>'.
 			'</div>';
 
-		$cardAmount = substr_count($paramStr, $itemSt);
-		$cardNo     = 0;
-
-//		echo $cardAmount . '<br>';
-//		echo htmlspecialchars($paramStr);
-//		echo '<hr>';
-
-		while(strpos($paramStr, $initSt) !== false){
 
 
-			//maximum of one card column are 3 cards
-			//to check for the bootstrap col-<value>
-			$start  = strpos($paramStr, $initSt);
-			$end    = strpos($paramStr, $initEn) - $start + strlen($initEn);
-			$substr = substr($paramStr, $start, $end);
+		$cardNo = 0;
+		$colClasses = 'col-md-12';
 
-			$count  = substr_count($substr, $itemSt);
+		$count = substr_count($paramStr, $itemSt);
 
+		if($count == 2)
+			$colClasses = 'col-xs-12 col-md-6';
 
-			$rep    = '<br>';
-			$leng   = strlen($rep);
-			$pos    = $start + strlen($initSt);
+		$paramStr = str_replace($initSt, $initPatternSt, $paramStr);
+		$paramStr = str_replace($initEn, $initPatternEn, $paramStr);
 
-			if($pos !== false)
-				$paramStr   = substr_replace($paramStr, '', $pos, $leng);
+		$paramStr = str_replace($itemSt, $itemPatternSt, $paramStr);
+		$paramStr = str_replace($itemEn, $itemPatternEn, $paramStr);
 
-			//3 as maximum of cards as columns
-			for($i = 0; $i < $count && $i < 2; $i++){
+		$paramStr = str_replace($itemTitleEn, $itemPatternTitleEn, $paramStr);
 
-
-
-				$pos        = strpos($paramStr, $itemEn) + strlen($itemEn);
-
-				if($pos !== false)
-					$paramStr   = substr_replace($paramStr, '', $pos, $leng);
+		//not only replacement because distinguis if left or right --> padding (because padding only in middel of both)
+		for($i = 0; $i < $count && $i < 2; $i++){
 
 
-				$colClasses = 'col-md-12';
+			$blue = strpos($paramStr, $itemTitleSt);
+			$gray = strpos($paramStr, $itemTitleGraySt);
 
-				if($count == 2)
-					$colClasses = 'col-xs-12 col-md-6';
-//				elseif($count == 3)
-//					$colClasses = 'col-xs-12 col-sm-6 col-md-4';
+			$order = '';
+
+			if($blue < $gray){
+
+				if($blue != null)
+					$order = 'blue';
+				else
+					$order = 'gray';
+			}
+			else{
+
+				if($gray != null)
+					$order = 'gray';
+				else
+					$order = 'blue';
+			}
+
+			if($order === 'blue'){
 
 				$itemPatternTitleSt =
-					'<div class="' . $colClasses . ($cardAmount == 1 ? ' pl-0 pr-0 ' : ($cardNo == 0 ? ' pl-0 pr-3 ' : ' pl-3 pr-0 ')) . '">' .
+					'<div class="' . $colClasses . ($count == 1 ? ' pl-0 pr-0 ' : ($i == 0 ? ' pl-0 pr-3 ' : ' pl-3 pr-0 ')) . '">' .
 					'<div class="card cd-blue">'.
 					'<div class="card-body">'.
 					'<h5 class="card-title">';
 
-				$cardNo++;
-
-				//can be optimated: strlengths could be calculated on time globaly and replace it in the functions
-				$paramStr = substr_replace($paramStr, $itemPatternTitleSt, strpos($paramStr, $itemTitleSt), strlen($itemTitleSt));
-				$paramStr = substr_replace($paramStr, $itemPatternSt, strpos($paramStr, $itemSt), strlen($itemSt));
-				$paramStr = substr_replace($paramStr, $itemPatternEn, strpos($paramStr, $itemEn), strlen($itemEn));
-				$paramStr = substr_replace($paramStr, $itemPatternTitleEn, strpos($paramStr, $itemTitleEn), strlen($itemTitleEn));
+				$paramStr = substr_replace($paramStr, $itemPatternTitleSt, $blue, strlen($itemTitleSt));
 			}
+			else{
 
-			$paramStr = substr_replace($paramStr, $initPatternSt, $start, strlen($initSt));
-			$paramStr = substr_replace($paramStr, $initPatternEn , strpos($paramStr, $initEn), strlen($initEn));
+				$itemPatternTitleSt =
+					'<div class="' . $colClasses . ($count == 1 ? ' pl-0 pr-0 ' : ($i == 0 ? ' pl-0 pr-3 ' : ' pl-3 pr-0 ')) . '">' .
+					'<div class="card cd-blue bg-secondary">'.
+					'<div class="card-body">'.
+					'<h5 class="card-title">';
+
+				$paramStr = substr_replace($paramStr, $itemPatternTitleSt, $gray, strlen($itemTitleGraySt));
+			}
 		}
 
-		return $paramStr;
+		echo $paramStr;
 	}
 
 	/**
