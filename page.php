@@ -18,7 +18,7 @@ $renderer = new RenderClass();
 
 		<div class="navbar-collapse collapse col-lg-10 short-l-p" id="navbarsExample01" style="">
 			<ul id="nav-list" class="navbar-nav mr-auto ">
-				<?php $renderer->getTopMenu(); ?>
+				<!--				--><?php $renderer->getTopMenu(); ?>
 			</ul>
 			<div class="">
 			</div>
@@ -40,32 +40,49 @@ $renderer = new RenderClass();
 			</div>
 		</div>
 	</nav>
-	<div class="container-fluid">
+	<!-- mobile devices -->
+	<div class="d-xl-none">
 		<div class="row">
 			<div class="col-lg-2"></div>
-			<div class="col-lg-7 middle-l-p">
-				<div id="nav-content-divider" class=""></div>
-				<h1 class="mr-5 mb-2">PAGE: <?php the_title(); ?></h1>
+			<div class="col-lg-10 middle-l-p">
+				<div id="nav-content-divider-mobile" class=""></div>
+				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
 				<article class="mr-5 mt-5">
 					<?php $renderer->renderContent(); ?>
 				</article>
 			</div>
-			<div class="col-lg-3">
+		</div>
+	</div>
+	<!-- pc -->
+	<div class="d-none d-xl-block container-fluid">
+		<div class="row">
+			<div class="col-lg-2 col-xl-2"></div>
+			<div class="col-lg-7 col-xl-7 middle-l-p">
+				<div id="nav-content-divider" class=""></div>
+				<h1 class="mr-5 mb-2"><?php the_title(); ?></h1>
+				<article class="mr-5 mt-5">
+					<?php $renderer->renderContent(); ?>
+				</article>
+			</div>
+			<div class="col-lg-3 col-xl-3">
 
 				<div id="nav-img-divider" class=""></div>
 				<div class="position-fixed">
 					<img id="aside-pic" src="<?php $renderer->getSiteImage();?>">
 				</div>
 			</div>
+			<div class="col-sm-2"></div>
 		</div>
+	</div>
+	<div class="container-fluid">
 	</div>
 	<div class="pt-5 mt-5"></div>
 	<footer class="fixed-bottom">
 
-		<nav class="navbar navbar-expand-lg footer-line fixed-bottom corp-name">
+		<nav class="navbar navbar-expand-lg footer-line fixed-bottom">
 
 
-			<div class="navbar-brand navbar-expand col-sm-6">
+			<div class="navbar-brand navbar-expand col-sm-6 corp-name">
 				Deutsch & Englischkurs von BA-English Communication Training GmbH
 			</div>
 

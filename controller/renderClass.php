@@ -274,7 +274,7 @@ class RenderClass
 			}
 		}
 
-		echo $paramStr;
+		return $paramStr;
 	}
 
 	/**
@@ -318,8 +318,8 @@ class RenderClass
 				'</div>';
 
 			$toggleContentSt =
-				'<div id="collapse-' . $this->headingNo . '" class="collapse ' . ($i == 0? ' show ' . $i . ' ' : '') . '" aria-labelledby="heading-' . $this->headingNo . '" data-parent="#accordion-' . $this->accordNo . '">'.
-					'<div class="card-body">';
+				'<div id="collapse-' . $this->headingNo . '" class="collapse' . ($i == 0? ' show ' . $i . ' ' : '') . '" aria-labelledby="heading-' . $this->headingNo . '" data-parent="#accordion-' . $this->accordNo . '">'.
+					'<div class="card-body acc-text">';
 
 			$toggleContentEn =
 					'</div>'.
