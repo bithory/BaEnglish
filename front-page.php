@@ -12,9 +12,7 @@ $renderer = new RenderClass();
 
 		<div class="d-lg-block col-sm-2">
 			<div class="bg-logo">
-				<a href="#">
-					<img src="<?php $renderer->renderImageDir(); ?>logo/BA-Logo.png" id="logo">
-				</a>
+				<?php $renderer->renderLogo(); ?>
 			</div>
 		</div>
 

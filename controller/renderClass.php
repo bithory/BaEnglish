@@ -468,4 +468,15 @@ class RenderClass
 	public function renderRightPanelMobile(){
 		echo $this->rightPanelMobile;
 	}
+
+	public function renderLogo(){
+
+		if(function_exists('the_custom_logo')){
+
+			$html = get_custom_logo('logo');
+			$html = str_replace('custom-logo"', 'custom-logo" id="logo" ', $html);
+
+			echo $html;
+		}
+	}
 }

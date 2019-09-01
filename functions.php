@@ -53,6 +53,7 @@ add_action('wp_enqueue_scripts', 'loadjs');
 add_action('wp_enqueue_scripts', 'loadFontAwesome');
 //add_action('wp_enqueue_scripts', 'asidePic');
 
+add_theme_support( 'custom-logo' );
 add_theme_support('menus');
 add_theme_support('post-thumbnails');
 
