@@ -25,8 +25,6 @@ class RenderClass
 
 		$this->AsidePic = get_the_post_thumbnail( null, 'large');
 
-//		echo $this->AsidePic;
-
 		$this->headingNo    = 0;
 		$this->accordNo     = 0;
 
@@ -37,8 +35,6 @@ class RenderClass
 		$this->loadNav('footer-menu');
 
 		$this->imageDir = get_template_directory_uri() . '/assets/images/';
-
-//		$this->correctImageDir();
 	}
 
 	public function renderImageDir(){
@@ -89,7 +85,7 @@ class RenderClass
 
 				if($item->menu_item_parent == 0){
 
-					$arr[$i]['start']   = '<li class="nav-item active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a>';
+					$arr[$i]['start']   = '<li class="' . ($expDirection == 'down' ? 'nav-item' : 'footer-item') . ' active align-content-lg-center ' . $classes . '"><a href="' . $item->url . '" class="nav-link">' . $item->title . '</a>';
 					$arr[$i]['end']     = '</li>';
 					$arr[$i]['nested']  = null;
 
@@ -102,7 +98,7 @@ class RenderClass
 					$arr[$i - 1]['nested'][] = '<a class="dropdown-item" href="' . $item->url . '">' . $item->title . '</a>';
 
 					if(!$parEd)
-						$arr[$i - 1]['start'] = '<li class="nav-item drop' . $expDirection . ' active align-content-lg-center ' . $classes . '"><a href="' . $tempUrl . '" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $tempTitle . '</a>';
+						$arr[$i - 1]['start'] = '<li class="' . ($expDirection == 'down' ? 'nav-item' : 'footer-item') . ' drop' . $expDirection . ' active align-content-lg-center ' . $classes . '"><a href="' . $tempUrl . '" class="nav-link dropdown-toggle" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">' . $tempTitle . '</a>';
 				}
 
 			}

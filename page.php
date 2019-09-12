@@ -66,7 +66,8 @@ $renderer = new RenderClass();
 			</div>
 			<div class="col-lg-3 col-xl-3">
 
-				<div id="nav-img-divider" class=""></div>
+<!--				<div id="nav-img-divider" class=""></div>-->
+				<div id="" class=""></div>
 				<div class="position-fixed">
 					<img id="aside-pic" src="<?php $renderer->getSiteImage();?>">
 				</div>
